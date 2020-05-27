@@ -1,7 +1,7 @@
-name: google_fonts
+name: web_fonts
 description: A package to include fonts from fonts.google.com in your Flutter app.
 version: 1.1.0
-homepage: https://github.com/material-foundation/google-fonts-flutter/
+homepage: https://github.com/dietfriends/web-fonts-flutter/
 
 environment:
   sdk: ">=2.3.0 <3.0.0"

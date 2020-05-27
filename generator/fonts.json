@@ -1,0 +1,22 @@
+{
+  "kind": "webfonts#webfontList",
+  "items": [
+    {
+      "kind": "webfonts#webfont",
+      "family": "ABeeZee",
+      "category": "sans-serif",
+      "variants": [
+        "regular"
+      ],
+      "subsets": [
+        "korean",
+        "latin"
+      ],
+      "version": "v1",
+      "lastModified": "2015-12-15",
+      "files": {
+        "regular": "hhttps://firebasestorage.googleapis.com/v0/b/dietfriends/o/fonts%2FGoyang.subset.ttf?alt=media"
+      }
+    }
+  ]
+}

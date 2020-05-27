@@ -4,7 +4,7 @@
 
 import 'package:flutter/foundation.dart';
 
-import 'google_fonts_variant.dart';
+import 'web_fonts_variant.dart';
 
 /// Represents a Google Fonts API variant in Flutter-specific types.
 class GoogleFontsFamilyWithVariant {

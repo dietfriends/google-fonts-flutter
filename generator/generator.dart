@@ -2,6 +2,7 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:console/console.dart';
@@ -9,12 +10,14 @@ import 'package:crypto/crypto.dart';
 import 'package:http/http.dart' as http;
 import 'package:mustache/mustache.dart';
 
+import 'fonts.dart';
 import 'fonts.pb.dart';
 
-const _generatedFilePath = 'lib/google_fonts.dart';
+const _generatedFilePath = 'lib/web_fonts.dart';
 
 /// Generates the `GoogleFonts` class.
 Future<void> main() async {
+  /*
   print('Getting latest font directory...');
   final protoUrl = await _getProtoUrl();
   print('Success! Using $protoUrl');
@@ -23,8 +26,12 @@ Future<void> main() async {
   print('\nValidating font URLs and file contents...');
   await _verifyUrls(fontDirectory);
   print(_success);
-
+  */
   print('\nGenerating $_generatedFilePath...');
+
+  final fontDirectory =
+      Directory.fromJson(File('generator/fonts.json').readAsStringSync());
+
   await _writeDartFile(_generateDartCode(fontDirectory));
   print(_success);
 
@@ -111,11 +118,11 @@ String _hashToString(List<int> bytes) {
   return fileName;
 }
 
-String _generateDartCode(Directory fontDirectory) {
+String _generateDartCode(FontList fontDirectory) {
   final methods = <Map<String, dynamic>>[];
 
-  for (final item in fontDirectory.family) {
-    final family = item.name;
+  for (final item in fontDirectory.items) {
+    final family = item.family;
     final familyNoSpaces = family.replaceAll(' ', '');
     final familyWithPlusSigns = family.replaceAll(' ', '+');
     final methodName = _familyToMethodName(family);
@@ -142,11 +149,11 @@ String _generateDartCode(Directory fontDirectory) {
       'fontFamilyDisplay': family,
       'docsUrl': 'https://fonts.google.com/specimen/$familyWithPlusSigns',
       'fontUrls': [
-        for (final variant in item.fonts)
+        for (final (k,v) in item.files)
           {
-            'variantWeight': variant.weight.start,
+            k: v,
             'variantStyle':
-                variant.italic.start.round() == 1 ? 'italic' : 'normal',
+                variant =='italic' ?'italic' : 'normal',
             'hash': _hashToString(variant.file.hash),
             'length': variant.file.fileSize,
           },

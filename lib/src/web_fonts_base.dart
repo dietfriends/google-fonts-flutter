@@ -14,11 +14,11 @@ import 'package:http/http.dart' as http;
 import 'package:path_provider/path_provider.dart';
 import 'package:pedantic/pedantic.dart';
 
-import '../google_fonts.dart';
+import '../web_fonts.dart';
 import 'asset_manifest.dart';
 import 'google_fonts_descriptor.dart';
 import 'google_fonts_family_with_variant.dart';
-import 'google_fonts_variant.dart';
+import 'web_fonts_variant.dart';
 
 // Keep track of the fonts that are loaded or currently loading in FontLoader
 // for the life of the app instance. Once a font is attempted to load, it does
